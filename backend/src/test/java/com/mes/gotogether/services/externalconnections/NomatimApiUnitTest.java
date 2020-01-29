@@ -1,15 +1,7 @@
 package com.mes.gotogether.services.externalconnections;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import java.util.Optional;
-import org.bson.codecs.ObjectIdGenerator;
-import org.bson.types.ObjectId;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
@@ -21,14 +13,14 @@ import com.mes.gotogether.domains.NomatimOpenStreetMapQuery;
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class NomatimApiUnitTest {
 
-	RestTemplate restTemplate;
-	NomatimMapLocation nomatimMapLocation;
+    RestTemplate restTemplate;
+    NomatimMapLocation nomatimMapLocation;
 	
     @Mock
     private NomatimOpenStreetMapQuery nomatimOpenStreetMapQueries;
     @Mock
     private Address address;
-    
+    /*
     @BeforeEach
     public void setUp() {
     	restTemplate = new RestTemplate();
@@ -121,7 +113,7 @@ public class NomatimApiUnitTest {
     }
 
 
-
+    */
 }
 
 

@@ -3,10 +3,7 @@ plugins {
 }
 apply plugin: 'java'
 apply plugin: "com.moowork.node"
-node {
-    version = "12.9.1"
-    download = true
-}
+
 task bundle(type: NpmTask, dependsOn: npmInstall) {
     args = ['run', 'build']
 }

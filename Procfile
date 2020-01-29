@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT backend/src/main/java/com/mes/gotogether/GotogetherApplication.java -jar backend/build/libs/gotogether.jar
