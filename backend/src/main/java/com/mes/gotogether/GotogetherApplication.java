@@ -21,7 +21,6 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 public class GotogetherApplication {
 
     // private static final Logger log = LoggerFactory.getLogger(Application.class);
-
     public static void main(String[] args) {
         SpringApplication.run(GotogetherApplication.class, args);
         System.out.println("****Run Successful ****");
@@ -31,11 +30,9 @@ public class GotogetherApplication {
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
-    
-    
+        
     @Bean
     public RouterFunction<ServerResponse> htmlRouter(@Value("classpath:/public/index.html") Resource html) {
-        return route(GET("/"), request -> ok().contentType(MediaType.TEXT_HTML).syncBody(html)
-        );
+        return route(GET("/"), request -> ok().contentType(MediaType.TEXT_HTML).syncBody(html));
     }
 }
