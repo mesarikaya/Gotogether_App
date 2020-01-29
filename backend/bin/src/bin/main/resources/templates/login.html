@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <base href="/">
+
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+
+    <script src="https://code.jquery.com/jquery-3.3.1-2.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous" th:src="@{/webjars/jquery/3.3.1-2/jquery.slim.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous" th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/css/all.css"
+          crossorigin="anonymous" th:href="@{/webjars/font-awesome/css/all.css}">
+
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+
+                // There are many ways to pick a DOM node; here we get the form itself and the email
+                // input box, as well as the span element into which we will place the error message.
+
+                var form  = document.querySelector('.needsLoginFormValidation');
+                var username = document.querySelector('#username');
+                var password = document.querySelector('#password');
+                var usernameError = document.querySelector('.usernameError');
+                var passwordError = document.querySelector('.passwordError');
+                var submitButton = document.querySelector('.submitButton');
+
+                username.addEventListener("input", function (event) {
+
+                    // Each time the user types something, we check if the
+                    // email field is valid.
+                    if (username.validity.valid) {
+                        // In case there is an error message visible, if the field
+                        // is valid, we remove the error message.
+                        usernameError.innerHTML = ""; // Reset the content of the message
+                        usernameError.className = "error"; // Reset the visual state of the message
+                    }
+                }, false);
+
+                password.addEventListener("input", function (event) {
+
+                    // Each time the user types something, we check if the
+                    // password field is valid.
+                    if (password.validity.valid) {
+                        // In case there is an error message visible, if the field
+                        // is valid, we remove the error message.
+                        passwordError.innerHTML = ""; // Reset the content of the message
+                        passwordError.className = "error"; // Reset the visual state of the message
+                    }
+                }, false);
+
+
+                form.addEventListener("submit", function (event) {
+                    // Each time the user tries to send the data, we check
+                    // if the email field is valid.
+                    if (!username.validity.valid) {
+
+                        // If the field is not valid, we display a custom
+                        // error message.
+                        usernameError.innerHTML = "Invalid username!";
+                        usernameError.className = "invalid-feedback error active";
+
+                        // And prevent the form from being sent by canceling the event
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    // Each time the user tries to send the data, we check
+                    // if the email field is valid.
+                    if (!password.validity.valid) {
+
+                        // If the field is not valid, we display a custom
+                        // error message.
+                        passwordError.innerHTML = "Expect a password";
+                        passwordError.className = "invalid-feedback error active";
+
+                        // And prevent the form from being sent by canceling the event
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                    /*var data = $('form[name=loginForm]').serialize();
+                    console.log("Data: " + data);
+                    loginAjaxPost()*/
+                }, false);
+            }, false);
+        })();
+
+        function loginAjaxPost(data){
+
+            var username = document.getElementById('username');
+            var password = document.getElementById('password');
+            var error = document.querySelector('.error');
+
+            var httpRequest = new XMLHttpRequest();
+
+            if (!httpRequest) {
+                console.log('Giving up :( Cannot create an XMLHTTP instance');
+                return false;
+            }
+
+            var res = httpRequest.responseText;
+
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    if (httpRequest.status === 200) {
+                        if(res.validated){
+                            console.log("User " + username.value + "successfully validated.");
+                        }else{
+                            console.log("User " + username.value + "validation is NEGATIVE.");
+                            //Set error messages
+                            $.each(res.errorMessages,function(key,value){
+                                $('input[name='+key+']').after('<span class="error">'+value+'</span>');
+                            });
+                        }
+                    } else {
+                        console.log('There was a problem with the request.');
+                    }
+                }
+            };
+
+            var data = {};
+            data["username"] = username.value;
+            data["password"] = password.value;
+            // var data = "username=" + username.value + "&password="+password.value;
+            // var data2 = $('form[name=loginForm]').serialize();
+            console.log("Data is: " + data);
+            // console.log("Form data: " + data2);
+            httpRequest.open('POST', '/api/v1/preprocessLogin', true);
+            httpRequest.setRequestHeader("Content-type", "application/json")
+            httpRequest.send(JSON.stringify(data));
+        }
+
+    </script>
+
+</head>
+<body class="mt-5">
+    <div class="container mb-5 text-center">
+        <div class="row-fluid">
+
+            <div class="container mb-5 modalContainer" >
+                <div class="row-fluid">
+                    <h2 class="loginHeader text-center">Login</h2>
+                    <form name="loginForm" class="needsLoginFormValidation mt-2"
+                          th:action="@{/auth}" method="POST" novalidate>
+                        <div th:if="${param.error}">
+                            <div class="loginError" aria-live="polite">
+                                Invalid login credentials!
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="input-group">
+
+                                <input type="email" class="form-control" id="username"
+                                       placeholder="Username" name="username" required>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                </div>
+
+                                <div class="invalid-feedback usernameError" aria-live="polite">
+                                    Invalid username!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group mt-2">
+                                <input type="password" name="password" placeholder="Password"
+                                       class="form-control" id="password" required>
+
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <i class="far fa-eye"></i>
+                                    </div>
+                                </div>
+
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
+                                <div class="invalid-feedback passwordError"  aria-live="polite">
+                                    Please provide a password.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mt-2 h-100">
+                            <div class="form-group my-auto">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="onoffswitch"
+                                           class="onoffswitch-checkbox" id="myonoffswitch">
+
+                                    <label class="form-check-label rememberMeText onoffswitch-label" for="myonoffswitch">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="rememberMeText my-auto">Remember me</div>
+                            <a class="helpText ml-auto my-auto" href="/loginHelp">Need help?</a>
+                        </div>
+
+                        <div class="col text-center mt-3">
+                            <button class="btn btn-primary submitButton" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>

@@ -1,0 +1,81 @@
+h2 {
+    color: #337791;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+span {
+    color: #257d86;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.groupViewCardDeck {
+    min-width: calc(90%) !important;
+}
+
+.card-columns{
+    column-count: 1 !important;
+}
+
+.card-deck .card {
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    border-radius: 1em;
+}
+
+.card-header:first-child {
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+}
+
+.tableHeader{
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+}
+
+.buttonToolbar{
+    display: block;
+}
+
+.groupViewCardDeck {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-bottom: 0.5em solid #66cc66;
+}
+
+@media screen and (max-width: 820px){ 
+
+    h2 {
+        font-size: 1.6rem !important;
+    }
+    
+    span {
+        font-size: 1.6rem !important;
+    }
+
+    .groupViewCardDeck {
+        min-width: calc(90%) !important;
+    }
+
+    .card-columns {
+      column-count: 1 !important;
+    }
+
+    .card-deck .card:not(:last-child){
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }    
+}
+
+@media screen and (min-width: 821px) {
+    .groupViewCardDeck {
+        min-width: calc(40%) !important;
+    }
+
+    .card-columns{
+      column-count: 2 !important;
+    }
+}
+
+

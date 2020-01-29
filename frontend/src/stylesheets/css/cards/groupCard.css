@@ -1,0 +1,87 @@
+.groupCard {
+    min-width: calc(90%) !important;
+    border-radius: 2em;
+}
+
+.card-deck .card {
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.card-deck .card:not(:last-child){
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+} 
+
+.card-header {
+    background: #93b4d7; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right top, #df8d8d, #ee2929, #f6a6a6, #c71010);
+    background: -moz-linear-gradient(to right top, #df8d8d, #ee2929, #f6a6a6, #c71010);
+    background: -o-linear-gradient(to right top, #df8d8d, #ee2929, #f6a6a6, #c71010);
+    background: linear-gradient(to right top, #df8d8d, #ee2929, #f6a6a6, #c71010); /* Chrome 10-25, Safari 5.1-6 */
+}
+
+.card-text-header{
+    font-size: 1.6 rem;
+    font-weight: 700;
+}
+
+.card-text{
+    font-size: 1.4 rem;
+    font-weight: 700;
+}
+
+.fa-7x{
+    font-size: 2.5rem;
+}
+
+.groupCard {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border-bottom: 0.5em solid #66cc66;
+}
+
+/* PAGE BREAKS AND DEFAULTS MODIFICATION FOR CARD COLUMN RESPONSIVENESS
+-------------------------------------------------- */
+@media only screen and (max-width: 576px) { 
+    .groupCard {
+        min-width: calc(90%) !important;
+    }
+
+    .card-columns{
+      column-count: 1;
+    }
+
+    .card-deck .card:not(:last-child){
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    } 
+}
+  
+@media only screen and (min-width: 577px) and (max-width: 768px) {
+    .groupCard {
+        min-width: calc(40%) !important;
+    }
+
+    .card-deck .card:not(:last-child){
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    } 
+}
+@media only screen and (min-width: 769px) and (max-width: 1000px) {
+    .groupCard {
+        min-width: calc(35%) !important;
+    }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1300px) {
+    .groupCard {
+        min-width: calc(25%) !important;
+    }
+}
+
+@media only screen and (min-width: 1301px) {
+    .groupCard {
+        min-width: calc(25%) !important;
+    }
+}

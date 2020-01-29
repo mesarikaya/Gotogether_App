@@ -1,0 +1,108 @@
+.navRow{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0 !important;
+}
+
+.navbar{
+    width: 100%;
+    background: #49e6ffc7; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right,#49e6ffc7, #070422);
+    background: -moz-linear-gradient(right, #49e6ffc7, #070422);
+    background: -o-linear-gradient(right, #49e6ffc7, #070422);
+    background: linear-gradient(to left, #49e6ffc7, #070422); /* Chrome 10-25, Safari 5.1-6 */
+    padding: 0;
+}
+
+.branding{
+    padding: 0.7rem 0 0.5rem 0;
+}
+
+.navButtonGroup {
+    text-align: right;
+    align-items: center;
+    padding: 0.7rem 0 0.5rem 0;
+}
+
+.navbar-brand{
+    font-size: 1.25rem;
+    color: #fff907;
+    padding: 0;
+}
+
+.navbar-brand:hover {
+    color: bisque;
+}
+
+.box {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.far, .fa, .fas {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.fa-child {
+    border-bottom: 1.5px solid black;
+    font-size: 10px;
+}
+
+.fa-sign-out-alt {
+    color: #f16556;
+}
+
+.fa-user-plus {
+    color: #dc6caf;
+}
+
+.fa-sign-in-alt {
+    color: #208036;
+}
+
+.fa-info {
+    color: #65b5ff;
+}
+
+.signInButton, .signOutButton, .signUpButton, .aboutButton{
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 48px;
+}
+
+.btn{
+    margin: 0;
+    padding: .3rem .2rem !important;
+    border-color: transparent;
+}
+
+.btn-link:hover {
+    background-color: bisque;
+    border-color: transparent;
+}
+
+.img-fluid {
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(0,0,0,.15);
+    z-index: 1;
+}
+
+#icons {
+    font-size: 12px;
+    color: #070422;
+    display: block;
+}
+
+@media screen and (max-width: 576px) {
+
+    .branding, .navButtonGroup {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+}

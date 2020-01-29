@@ -1,0 +1,190 @@
+.modalDialog{
+    max-width: 375px;
+}
+
+.modal-content  {
+    -webkit-border-radius: 2rem !important;
+    -moz-border-radius: 2rem !important;
+    border-radius: 2rem !important;
+}
+
+.modalContainer{
+    max-width: 340px;
+}
+
+.modalHeader {
+    border-bottom: 0 none;
+    height: 1rem;
+}
+
+.loginHeader{
+    color: #0aeaad;
+    font-weight: bold;
+}
+
+.loginError{
+    margin: auto;
+    color: #ee6561;
+    font-weight: bold;
+}
+#loginOrRegistertab {
+    background: #ff9494;
+}
+
+#loginOrRegisterTab-tab-login, #loginOrRegisterTab-tab-register, #loginOrRegisterTab-tab-contact {
+    color: #0aeaad;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.loginFormContainer{
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+}
+
+.rememberMeText, .helpText {
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+.form-control{
+    border-top-left-radius: 8rem;
+    border-bottom-left-radius: 8rem;
+    border-top-right-radius: 8rem;
+    border-bottom-right-radius: 8rem;
+}
+
+.input-group>.input-group-append:not(:last-child)>.input-group-text{
+    border-top-right-radius: 8rem;
+    border-bottom-right-radius: 8rem;
+}
+
+.LoginFormInputGroup{
+    height: 3rem;
+}
+
+.input-group-text{
+    background-color: #4de8d4;
+    height: 2.4rem;
+}
+
+.submitButton, .submitButton:focus, .submitButton:hover, .submitButton:active{
+    border-radius: 2rem;
+    background-color: rgba(7, 212, 124, 0.69);
+    border-color: rgba(7, 212, 124, 0.69);
+}
+
+.disabledSubmitButton, .disabledSubmitButton:hover, .disabledSubmitButton:focus{
+    border-radius: 2rem;
+    background-color: rgba(196, 230, 224, 0.856);
+    border-color: rgba(196, 230, 224, 0.856);
+}
+
+.submitButton:disabled {
+    border-radius: 2rem;
+    background-color: rgba(196, 230, 224, 0.856);
+    border-color: rgba(196, 230, 224, 0.856);
+}
+
+.form-control{
+    max-width: 100%;
+}
+/* SWITCH CHECKBOXES STYLES */
+/* SOURCE: https://gist.github.com/dciccale/1367918 */
+/* No more blue blur border */
+input {
+    outline: none;
+    height: 2.5rem;
+}
+
+/* base styles */
+input[type="checkbox"] {
+    height: 5px;
+    width: 5px;
+    vertical-align: middle;
+    margin: 0 0.4em 0.4em 0;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #AAAAAA;
+    -webkit-appearance: none;
+}
+
+/* border radius for checkbox */
+input[type="checkbox"] {
+    border-radius: 2px;
+}
+
+/* hover state */
+input[type="checkbox"]:not(:disabled):hover {
+    border: 1px solid rgba(58, 197, 201, 1);
+}
+
+/* active state */
+input[type="checkbox"]:active:not(:disabled) {
+    border: 1px solid rgba(58, 197, 201, 1);
+}
+
+/* input checked border color */
+input[type="checkbox"]:checked {
+    border: 1px solid rgba(58, 197, 201, 1);
+}
+
+input[type="checkbox"]:checked:not(:disabled) {
+    background: rgba(58, 197, 201, 1);
+}
+
+/* checkbox checked */
+input[type="checkbox"]:checked:before {
+    font-weight: bold;
+    color: white;
+    content: '\2713';
+    margin-left: 2px;
+    font-size: 14px;
+}
+
+/* SWITCH STYLES */
+/* SOURCE: https://proto.io/freebies/onoff/ */
+.onoffswitch {
+    position: relative; width: 56px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFFF; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 1.4rem; padding: 0; line-height: 22px;
+    font-size: 0.7rem; color: black; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 6px;
+    background-color: #3AC5C9; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 6px;
+    background-color: #E85764; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 12px; margin: 5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 30px;
+    border: 2px solid #FFFFFF; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 3px;
+}
