@@ -19,7 +19,6 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @SpringBootApplication
 @EnableConfigurationProperties(Properties.class)
 public class GotogetherApplication {
-
     // private static final Logger log = LoggerFactory.getLogger(Application.class);
     public static void main(String[] args) {
         SpringApplication.run(GotogetherApplication.class, args);
