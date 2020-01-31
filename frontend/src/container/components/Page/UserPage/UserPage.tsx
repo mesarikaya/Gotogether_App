@@ -189,7 +189,7 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
                                onLogout={this.props.onLogout}
                 />
                 <div className="container px-0 mx-auto pageContainer">
-                    {this.state.isLoading ? 
+                    {!this.state.isLoading ? 
                         <CardDeck key={this.state.storeState.system.userName}>
                                 <UserSubscribedGroupsList key={this.state.storeState.system.userName+"_subs"}
                                                     subscribedGroups={this.state.storeState.userAccount.subscribedGroups}
