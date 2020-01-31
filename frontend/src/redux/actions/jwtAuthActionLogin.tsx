@@ -7,7 +7,7 @@ import { UpdateResponseStatusActionType } from '../types/action/updateResponseSt
 import { createStandardError } from './utilities/createStandardError';
 
 // Set the API url for back end calls
-const url = process.env.REACT_APP_NODE_ENV === 'production' ? "/api/auth/" : "http://localhost:8080/api/auth/";
+const url = process.env.NODE_ENV === 'production' ? "/api/auth/" : "http://localhost:8080/api/auth/";
 
 /**
  * Make GET request and dipatch the image data to be shown via redux  
@@ -15,7 +15,9 @@ const url = process.env.REACT_APP_NODE_ENV === 'production' ? "/api/auth/" : "ht
  * @param formFields Login form input data
  */
 export function UpdateAuth(event: React.FormEvent<HTMLFormElement>, formFields: LoginFormFields) {
-    
+   
+    // tslint:disable-next-line: no-console
+    console.log("Environment is: ", process.env.REACT_APP_NODE_ENV);
     if (event !== null) { event.preventDefault(); }
 
     // Set data to send with Post request

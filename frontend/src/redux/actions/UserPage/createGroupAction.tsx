@@ -9,7 +9,7 @@ import createStandardError from '../utilities/createStandardError';
 import { UpdateResponseStatusActionType } from 'src/redux/types/action/updateResponseStatusActionType';
 
 // Set the API url for back end calls
-const url = process.env.REACT_APP_NODE_ENV === 'production' ? "/api/v1/" : "http://localhost:8080/api/v1/";
+const url = process.env.NODE_ENV === 'production' ? "/api/auth/" : "http://localhost:8080/api/auth/";
 
 /**
  * Create Group for the user as owner
