@@ -125,7 +125,7 @@ public class JWTUtil implements Serializable  {
                             .setExpiration(expirationDate)
                             .signWith(signingKey, SignatureAlgorithm.HS512)
                             .compact();
-        
+        log.info("value: " + value);
         return value;
     }
 
