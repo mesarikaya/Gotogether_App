@@ -227,69 +227,8 @@ public class AuthenticationController {
                                      .flatMap( (u) -> userService.saveOrUpdateUser(u)) 
                                      .flatMap(u -> userService.findByUserId(u.getUserId()))
                                      .flatMap((savedUser) -> {
-                                         log.info("Sending email with user: \n" + savedUser);
+                                         log.info("Sending email with user: \n" );
                                          return emailService.sendEmail(savedUser, origin);
                                      });
      }
 }
-
-/*                                                    
-                                                   
-                                                   ResponseEntity.ok()
-                                                                                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-                                                                                        .body(new HttpResponse(HttpStatus.BAD_REQUEST,
-                                                                                                                                  HttpResponse.ResponseType.SUCCESS,
-                                                                                                                                  ex.getMessage()));*/
-//.build();
-//serverHttpResponse.getHeaders().add(HttpHeaders.SET_COOKIE,"test: " + cookie.toString());
-//System.out.println("Server Http response: " + serverHttpResponse.getCookies().toString());
-//                        .header(HttpHeaders.AUTHORIZATION,
-//                                String.join(" ","Bearer", token))
-/*return ResponseEntity
-                        .ok()
-                        //.header(HttpHeaders.SET_COOKIE, serverHttpResponse.getCookies().toSingleValueMap().values().toString())
-                        .header(HttpHeaders.SET_COOKIE,
-                                cookie.getName() + "=" + cookie.getValue() + ";"
-                                        + "httpOnly="+ cookie.isHttpOnly() + ";"
-                                        + "expires=" + cookie.getMaxAge() + ";"
-                                        + "sameSite=" + cookie.getSameSite())
-                        //.contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .body(new AuthResponse(token, userDetails.getUsername()));*/
-// ResponseEntity.ok(new AuthResponse(jwtUtil.generateToken((SecurityUserLibrary) userDetails)));
-
-/*
-authRequestMono.flatMap(
-            ar ->{
-                System.out.println("Authorization request is: " + ar );
-                System.out.println("Authorization: " + ar.getUsername() +
-                        "password: " + ar.getPassword() +
-                        "encoded: " +passwordEncoder.encode(ar.getPassword()));
-                return securityUserService.findByUserId(ar.getUsername()).map((userDetails) -> {
-                    System.out.println("userdetails password: " + userDetails.getPassword());
-                    if (passwordEncoder.matches(ar.getPassword(), userDetails.getPassword())) {
-                        System.out.println("Authorized! YEAH!!!!");
-
-                        String token = jwtUtil.generateToken((SecurityUserLibrary) userDetails);
-
-                        ResponseCookie cookie = ResponseCookie.from("JWTCookie", token)
-                                .maxAge(3600)
-                                .build();
-
-                        serverHttpResponse.addCookie(cookie);
-
-                        return ResponseEntity.ok()
-                                .header(HttpHeaders.AUTHORIZATION,
-                                        String.join(" ","Bearer", token))
-                                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                                .body(new AuthResponse(token, userDetails.getUsername()));
-
-                        // ResponseEntity.ok(new AuthResponse(jwtUtil.generateToken((SecurityUserLibrary) userDetails)));
-                    } else {
-                        System.out.println("Returning unauthorized");
-                        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-                    }
-                }).defaultIfEmpty(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
-            }).onErrorReturn(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
-
-
- */

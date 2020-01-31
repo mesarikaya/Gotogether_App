@@ -33,7 +33,7 @@ public class SendGridEmail {
         
         SendGridEmail sendGridEmail = new SendGridEmail();
         Personalization personalization = new Personalization();
-        Personalization.EmailEntity from = new Personalization.EmailEntity(sentFrom, "Sendgrid");
+        Personalization.EmailEntity from = new Personalization.EmailEntity(sentFrom, "GotogetherApp");
         Personalization.EmailEntity to = new Personalization.EmailEntity(sentTo, "User");
         sendGridEmail.setFrom(from);
         personalization.addTo(to);
