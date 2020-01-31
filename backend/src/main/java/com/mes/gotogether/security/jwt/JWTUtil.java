@@ -17,7 +17,6 @@ import java.util.function.Function;
 import javax.crypto.spec.SecretKeySpec;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -26,7 +25,6 @@ import org.springframework.util.Assert;
 public class JWTUtil implements Serializable  {
 
     private static final long serialVersionUID = 1L;
-    private Environment env;
     static final String CLAIM_KEY_USERNAME = "sub";
     static final String CLAIM_KEY_AUDIENCE = "aud";
     static final String CLAIM_KEY_CREATED = "iat";
@@ -45,11 +43,8 @@ public class JWTUtil implements Serializable  {
     public JWTUtil(@Value("${jwt.secret}") String secret, @Value("${jwt.expiration}") Long expiration) {
         Assert.notNull(secret, "secret cannot be null");
         Assert.notNull(expiration, "expiration cannot be null");
-        log.info("Secret is: " + secret);
         this.secret = secret;
         this.expiration = expiration;
-
-        // Sign JWT with ApiKey secret
         String encodedString = Base64.getEncoder().encodeToString(secret.getBytes());
         byte[] apiKeySecretBytes = Base64.getDecoder().decode(encodedString);
         this.signingKey = new SecretKeySpec(apiKeySecretBytes, "HmacSHA512");
@@ -117,6 +112,7 @@ public class JWTUtil implements Serializable  {
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
         log.info("expirationDate: " + expirationDate + " createdDate: " + createdDate);
+        log.info("Secret is: " + secret);
         log.info("signing key is: " + signingKey);
         log.info("Claims: " +claims + " audience: " + audience + " subject: " + subject);
         log.info("Set the signature algorithm: " + SignatureAlgorithm.HS512);
@@ -132,8 +128,8 @@ public class JWTUtil implements Serializable  {
         log.info("jwtBuilder set issued date is created");
         jwtbuilder =jwtbuilder.setExpiration(expirationDate);
         log.info("jwtBuilder set expiration date is created");
-        jwtbuilder =jwtbuilder.signWith(signingKey, SignatureAlgorithm.HS256);
-        log.info("jwtBuilder set expiration date is created");
+        jwtbuilder =jwtbuilder.signWith(signingKey, SignatureAlgorithm.HS512);
+        log.info("jwtBuilder set  signwith is created");
         String testValue =jwtbuilder.compact();
         log.info("jwtBuilder test value is: " + testValue);
         String value = Jwts.builder()

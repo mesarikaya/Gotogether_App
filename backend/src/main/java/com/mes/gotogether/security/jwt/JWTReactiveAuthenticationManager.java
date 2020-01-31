@@ -46,11 +46,12 @@ public class JWTReactiveAuthenticationManager implements ReactiveAuthenticationM
             username = jwtTokenUtil.getUsernameFromToken(authToken);
             if (jwtTokenUtil.validateToken(authToken)) {
                 Claims claims = jwtTokenUtil.getAllClaimsFromToken(authToken);
+                @SuppressWarnings("unchecked")
                 List<String> rolesMap = claims.get("role", List.class);
                 List<Role> roles = new ArrayList<>();
-                for (String rolemap : rolesMap) {
+                rolesMap.forEach(( rolemap ) -> {
                     roles.add(Role.valueOf(rolemap));
-                }
+                });
 
                 log.info("HERE IN AUTHENTICATE*****: " + "- Roles: " + roles);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
