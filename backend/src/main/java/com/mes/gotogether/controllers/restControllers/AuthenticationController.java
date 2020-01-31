@@ -71,12 +71,14 @@ public class AuthenticationController {
                                                      .map( (userDetails) -> {
                                                           if (passwordEncoder.matches(ar.getPassword(), userDetails.getPassword())) {
                                                                log.info("Authorized! YEAH!!!!");
+                                                                log.info("Generating token");
                                                                String token = jwtUtil.generateToken((SecurityUserLibrary) userDetails);
                                                                log.info("GEnerated token is" + token);
                                                                ResponseCookie cookie = ResponseCookie.from("System", token)
                                                                    .sameSite("Strict")
                                                                    .path("/")
                                                                    .maxAge(3000)
+                                                                   .secure(Boolean.parseBoolean(env.getProperty("cookie_secure")))
                                                                    .httpOnly(true)
                                                                    .build();
                                                                serverHttpResponse.addCookie(cookie);
