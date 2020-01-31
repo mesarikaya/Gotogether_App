@@ -7,7 +7,7 @@ import { UpdateResponseStatusActionType } from 'src/redux/types/action/updateRes
 import createStandardError from '../utilities/createStandardError';
 
 // Set the API url for back end calls
-const url = process.env.NODE_ENV === 'production' ? "/api/auth/" : "http://localhost:8080/api/auth/";
+const url = process.env.NODE_ENV === 'production' ? "/api/v1/" : "http://localhost:8080/api/auth/";
 
 /**
  * Update group members and update the store state
