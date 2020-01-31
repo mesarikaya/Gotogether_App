@@ -79,7 +79,7 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
         super(props);
         const currAppState:AppState = store.getState();
         this.state = {
-            isLoading: true,
+            isLoading: false,
             groupSearchFormFields: {
                 origin: '',
                 originRange: 2,
@@ -203,28 +203,29 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
                                onLogout={this.props.onLogout}
                 />
                 <div className="container px-0 mx-auto pageContainer">
-                    <CardDeck className="justify-content-center" key={this.state.storeState.system.userName}>
-                        {this.state.isLoading ? 
-                        <div>
-                            <UserSubscribedGroupsList key={this.state.storeState.system.userName+"_subs"}
-                                                  subscribedGroups={this.state.storeState.userAccount.subscribedGroups}
-                                                  userName={this.state.storeState.system.userName}
-                                                  token={this.state.storeState.system.token}
-                                                  onUpdateMember={this.props.onUpdateGroupMember}
-                                                  updateSelectedGroup={this.props.updateSelectedGroup}
-                                                  onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>
-                            <UserInvitationsList key={this.state.storeState.system.userName+"_invites"} 
-                                             invitationsList={this.state.storeState.userAccount.invitationList}
-                                             userName={this.state.storeState.system.userName}
-                                             token={this.state.storeState.system.token}
-                                             onUpdateMember={this.props.onUpdateGroupMember}
-                                             onUpdateInvitationList={this.props.onUpdateGroupInvitationsList}
-                                             updateSelectedGroup={this.props.updateSelectedGroup}
-                                             onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>
-                        </div>:
+                    {this.state.isLoading ? 
+                        <CardDeck key={this.state.storeState.system.userName}>
+                                <UserSubscribedGroupsList key={this.state.storeState.system.userName+"_subs"}
+                                                    subscribedGroups={this.state.storeState.userAccount.subscribedGroups}
+                                                    userName={this.state.storeState.system.userName}
+                                                    token={this.state.storeState.system.token}
+                                                    onUpdateMember={this.props.onUpdateGroupMember}
+                                                    updateSelectedGroup={this.props.updateSelectedGroup}
+                                                    onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>
+                                <UserInvitationsList key={this.state.storeState.system.userName+"_invites"} 
+                                                invitationsList={this.state.storeState.userAccount.invitationList}
+                                                userName={this.state.storeState.system.userName}
+                                                token={this.state.storeState.system.token}
+                                                onUpdateMember={this.props.onUpdateGroupMember}
+                                                onUpdateInvitationList={this.props.onUpdateGroupInvitationsList}
+                                                updateSelectedGroup={this.props.updateSelectedGroup}
+                                                onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>
+                        </CardDeck>:
+                        <CardDeck className="justify-content-center">
                             this.showSpinner()
-                        }
-                    </CardDeck>
+                        </CardDeck>
+                        
+                    }
                 </div>
                     
                 <div className="container mx-auto my-auto align-items-center">
