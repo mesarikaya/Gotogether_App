@@ -71,7 +71,7 @@ public class AuthenticationController {
                                                      .map( (userDetails) -> {
                                                           if (passwordEncoder.matches(ar.getPassword(), userDetails.getPassword())) {
                                                                log.info("Authorized! YEAH!!!!");
-                                                                log.info("Generating token");
+                                                               log.info("Generating token for:  " +(SecurityUserLibrary) userDetails);
                                                                String token = jwtUtil.generateToken((SecurityUserLibrary) userDetails);
                                                                log.info("GEnerated token is" + token);
                                                                ResponseCookie cookie = ResponseCookie.from("System", token)

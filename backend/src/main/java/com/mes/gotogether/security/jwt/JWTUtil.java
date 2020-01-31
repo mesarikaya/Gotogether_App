@@ -104,7 +104,9 @@ public class JWTUtil implements Serializable  {
         log.info("Inside generate token function");
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", userDetails.getRoles());
-        return doGenerateToken(claims, userDetails.getUsername(), generateAudience());
+        String value = doGenerateToken(claims, userDetails.getUsername(), generateAudience());
+        log.info("Inside generate token function generated value: " + value);
+        return value;
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {
