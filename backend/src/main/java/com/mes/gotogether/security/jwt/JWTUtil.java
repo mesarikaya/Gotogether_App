@@ -34,12 +34,12 @@ public class JWTUtil implements Serializable  {
     static final String AUDIENCE_MOBILE = "mobile";
     static final String AUDIENCE_TABLET = "tablet";
     
-    private Clock clock = DefaultClock.INSTANCE;
+    private final Clock clock = DefaultClock.INSTANCE;
     @Value("${jwt.secret}")
-    private String secret;
-    private Key signingKey;
+    private final String secret;
+    private final Key signingKey;
     @Value("${jwt.expiration}")
-    private Long expiration;
+    private final Long expiration;
 
     public JWTUtil(@Value("${jwt.secret}") String secret, @Value("${jwt.expiration}") Long expiration) {
         Assert.notNull(secret, "secret cannot be null");
@@ -82,8 +82,8 @@ public class JWTUtil implements Serializable  {
     }
 
     private Boolean isTokenExpired(String token) {
-        final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(clock.now());
+        final Date expirationPeriod = getExpirationDateFromToken(token);
+        return expirationPeriod.before(clock.now());
     }
 
     private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
@@ -104,17 +104,20 @@ public class JWTUtil implements Serializable  {
         log.info("Inside generate token function");
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", userDetails.getRoles());
+        log.info("Claims are put:");
         String value = doGenerateToken(claims, userDetails.getUsername(), generateAudience());
         log.info("Inside generate token function generated value: " + value);
         return value;
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {
-
+        log.info("Inside doGenerate function");
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
-
-        return Jwts.builder()
+        log.info("expirationDate: " + expirationDate + " createdDate: " + createdDate);
+        log.info("signing key is: " + signingKey);
+        log.info("Claims: " +claims + " audience: " + audience + " subject: " + subject);
+        String value = Jwts.builder()
                             .setClaims(claims)
                             .setSubject(subject)
                             .setAudience(audience)
@@ -122,6 +125,8 @@ public class JWTUtil implements Serializable  {
                             .setExpiration(expirationDate)
                             .signWith(signingKey, SignatureAlgorithm.HS512)
                             .compact();
+        
+        return value;
     }
 
     public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
