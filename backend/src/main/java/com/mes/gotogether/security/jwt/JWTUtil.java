@@ -131,7 +131,12 @@ public class JWTUtil implements Serializable  {
         log.info("jwtBuilder set issued date is created");
         jwtbuilder =Jwts.builder().setExpiration(expirationDate);
         log.info("jwtBuilder set expiration date is created");
-        jwtbuilder =Jwts.builder().signWith(signingKey, SignatureAlgorithm.HS512);
+        try{
+            jwtbuilder =Jwts.builder().signWith(signingKey, SignatureAlgorithm.HS512);
+        }catch (Exception ex){
+            log.info("Eception is: " + ex.getMessage());
+        }
+        
         log.info("jwtBuilder set expiration date is created");
         String testValue =Jwts.builder().compact();
         log.info("jwtBuilder test value is: " + testValue);
