@@ -48,6 +48,8 @@ application-prod.yml
 # production
 /frontend/build
 
+/frontend/.env
+
 # misc
 .DS_Store
 .env
