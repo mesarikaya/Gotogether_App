@@ -45,6 +45,7 @@ public class JWTUtil implements Serializable  {
     public JWTUtil(@Value("${jwt.secret}") String secret, @Value("${jwt.expiration}") Long expiration) {
         Assert.notNull(secret, "secret cannot be null");
         Assert.notNull(expiration, "expiration cannot be null");
+        log.info("Secret is: " + secret);
         this.secret = secret;
         this.expiration = expiration;
 
