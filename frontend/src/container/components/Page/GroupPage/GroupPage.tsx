@@ -110,8 +110,7 @@ class GroupPage extends React.Component<Props & RouteComponentProps<PathProps>, 
         const currAppState = store.getState();
         const selectedGroup:GroupSearchResult = currAppState.selectedGroup;
         const newProps = this.props;
-        // tslint:disable-next-line: no-console
-        console.log(oldProps.groupInfo !== newProps.groupInfo, "and ", this.state.storeState !== currAppState);
+
         if(oldProps.groupInfo !== newProps.groupInfo 
             || this.state.storeState !== currAppState) {
             this.setState({ 

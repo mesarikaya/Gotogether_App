@@ -55,8 +55,6 @@ export function updateUserAccount(event: React.MouseEvent<HTMLButtonElement> | n
                                     const obj = newResponseData[key].members.users[key2];
                                     if (obj && !(Object.keys(obj).length === 0 && obj.constructor === Object)){
                                         if(obj.userId===userId){
-                                            // tslint:disable-next-line: no-console
-                                            console.log("add to subscription: " +  subscribedGroups + "-" + key);
                                             subscribedGroups.push(newResponseData[key]);
                                         }
                                     }
@@ -66,8 +64,6 @@ export function updateUserAccount(event: React.MouseEvent<HTMLButtonElement> | n
                                     const obj = newResponseData[key].invitationList.users[key2];
                                     if (obj && !(Object.keys(obj).length === 0 && obj.constructor === Object)){
                                         if(obj.userId===userId){
-                                            // tslint:disable-next-line: no-console
-                                            console.log("add to subscription: " +  invitationList + "-" + key);
                                             invitationList.push(newResponseData[key]);
                                         }
                                     }
@@ -81,20 +77,14 @@ export function updateUserAccount(event: React.MouseEvent<HTMLButtonElement> | n
                         invitationList: JSON.parse(JSON.stringify(invitationList))
                     };
 
-                    // tslint:disable-next-line: no-console
-                    console.log("Payload of user account is: " + payload);
                 }else{
                     payload = initialState;
                 }
                 
                 dispatch({ type: 'UPDATE_USER_ACCOUNT', payload });        
-            }else {
-                // TODO: CREATE ERROR HANDLERS
-                // tslint:disable-next-line:no-console
-                console.log("Error in axios");                
+            }else {   
                 dispatch({ type: 'UPDATE_USER_ACCOUNT', payload });
             }
-            // TODO: PUT THE RIGHT type for error inside the catch
         }).catch((error: any) => {
             createStandardError(error, dispatch);
         }));   

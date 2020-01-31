@@ -45,20 +45,12 @@ class VerifyUser extends React.Component<Props & RouteComponentProps<PathProps>,
     }
 
     public componentDidMount() {
-        
-        // tslint:disable-next-line:no-console  
-        console.log("Location parsing for verification: ", this.props.match.params);
         const params = JSON.parse(JSON.stringify(this.props.match.params));
-        // tslint:disable-next-line:no-console  
-        console.log("Location parsing for verification: ", params);
-
         // Send all the data on component load
         this.verifyUser(params);
     }
 
     public verifyUser = async (params: any): Promise<void> => {
-        // tslint:disable-next-line:no-console
-        console.log("GET METHOD VERIFY TOKEN:", params);
         this.props.onValidateToken(params);
         this.setState({
             showResponseStatus: true,
