@@ -3,7 +3,6 @@ package com.mes.gotogether.security.jwt;
 import com.mes.gotogether.security.domain.SecurityUserLibrary;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
-import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
@@ -98,50 +97,24 @@ public class JWTUtil implements Serializable  {
     }
 
     public String generateToken(SecurityUserLibrary userDetails) {
-        log.info("Inside generate token function");
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", userDetails.getRoles());
-        log.info("Claims are put:");
         String value = doGenerateToken(claims, userDetails.getUsername(), generateAudience());
-        log.info("Inside generate token function generated value: " + value);
         return value;
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {
-        log.info("Inside doGenerate function");
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
-        log.info("expirationDate: " + expirationDate + " createdDate: " + createdDate);
-        log.info("Secret is: " + secret);
-        log.info("signing key is: " + signingKey);
-        log.info("Claims: " +claims + " audience: " + audience + " subject: " + subject);
-        log.info("Set the signature algorithm: " + SignatureAlgorithm.HS512);
-        JwtBuilder jwtbuilder =Jwts.builder();
-        log.info("jwtBuilder is created");
-        jwtbuilder =jwtbuilder.setClaims(claims);
-        log.info("jwtBuilder claims is created");
-        jwtbuilder =jwtbuilder.setSubject(subject);
-        log.info("jwtBuilder subject is created");
-        jwtbuilder =jwtbuilder.setAudience(audience);
-        log.info("jwtBuilder audience is created");
-        jwtbuilder =jwtbuilder.setIssuedAt(createdDate);
-        log.info("jwtBuilder set issued date is created");
-        jwtbuilder =jwtbuilder.setExpiration(expirationDate);
-        log.info("jwtBuilder set expiration date is created");
-        jwtbuilder =jwtbuilder.signWith(signingKey, SignatureAlgorithm.HS512);
-        log.info("jwtBuilder set  signwith is created");
-        String testValue =jwtbuilder.compact();
-        log.info("jwtBuilder test value is: " + testValue);
-        String value = Jwts.builder()
-                            .setClaims(claims)
-                            .setSubject(subject)
-                            .setAudience(audience)
-                            .setIssuedAt(createdDate)
-                            .setExpiration(expirationDate)
-                            .signWith(signingKey, SignatureAlgorithm.HS512)
-                            .compact();
-        log.info("value: " + value);
-        return value;
+
+        return Jwts.builder()
+                          .setClaims(claims)
+                          .setSubject(subject)
+                          .setAudience(audience)
+                          .setIssuedAt(createdDate)
+                          .setExpiration(expirationDate)
+                          .signWith(signingKey, SignatureAlgorithm.HS512)
+                          .compact();
     }
 
     public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {

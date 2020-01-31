@@ -71,9 +71,7 @@ public class AuthenticationController {
                                                      .map( (userDetails) -> {
                                                           if (passwordEncoder.matches(ar.getPassword(), userDetails.getPassword())) {
                                                                log.info("Authorized! YEAH!!!!");
-                                                               log.info("Generating token for:  " +(SecurityUserLibrary) userDetails);
                                                                String token = jwtUtil.generateToken((SecurityUserLibrary) userDetails);
-                                                               log.info("GEnerated token is" + token);
                                                                ResponseCookie cookie = ResponseCookie.from("System", token)
                                                                    .sameSite("Strict")
                                                                    .path("/")
@@ -82,9 +80,6 @@ public class AuthenticationController {
                                                                    .httpOnly(true)
                                                                    .build();
                                                                serverHttpResponse.addCookie(cookie);
-                                                               log.info("Cookie is: " + cookie.toString());
-                                                               log.info("New Auth response is: " + new AuthResponse(token, userDetails.getUsername()).toString());
-                                                               log.info("Server response: " + serverHttpResponse.getCookies().toSingleValueMap().values());
                                                                return ResponseEntity.ok()
                                                                                                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                                                                                                     .body(new AuthResponse(token, userDetails.getUsername()));
@@ -106,6 +101,7 @@ public class AuthenticationController {
                                                                    .sameSite("Strict")
                                                                    .path("/")
                                                                    .maxAge(0)
+                                                                   .secure(Boolean.parseBoolean(env.getProperty("cookie_secure")))
                                                                    .httpOnly(true)
                                                                    .build();
                                                                serverHttpResponse.addCookie(cookie);

@@ -133,20 +133,6 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
         this.setState({ isLoading: status });
     }
 
-    public showSpinner(){
-        return (
-            <div className="row text-center">
-                <Spinner
-                    as="span"
-                    animation="grow" 
-                    variant="warning"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                />
-            <p>Processing</p>
-        </div>);
-    }
     public loadTable = (groupSearchResult: GroupSearchResult[]) => {
         if (this.state.isLoading===true){
             return (
@@ -222,9 +208,16 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
                                                 onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>
                         </CardDeck>:
                         <CardDeck className="justify-content-center">
-                            this.showSpinner()
+                            <Spinner
+                                as="span"
+                                animation="grow" 
+                                variant="warning"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />
+                            <p>Processing</p>
                         </CardDeck>
-                        
                     }
                 </div>
                     
