@@ -3,6 +3,7 @@ package com.mes.gotogether.security.jwt;
 import com.mes.gotogether.security.domain.SecurityUserLibrary;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
@@ -117,6 +118,23 @@ public class JWTUtil implements Serializable  {
         log.info("expirationDate: " + expirationDate + " createdDate: " + createdDate);
         log.info("signing key is: " + signingKey);
         log.info("Claims: " +claims + " audience: " + audience + " subject: " + subject);
+        log.info("Set the signature algorithm: " + SignatureAlgorithm.HS512);
+        JwtBuilder jwtbuilder =Jwts.builder();
+        log.info("jwtBuilder is created");
+        jwtbuilder =Jwts.builder().setClaims(claims);
+        log.info("jwtBuilder claims is created");
+        jwtbuilder =Jwts.builder().setSubject(subject);
+        log.info("jwtBuilder subject is created");
+        jwtbuilder =Jwts.builder().setAudience(audience);
+        log.info("jwtBuilder audience is created");
+        jwtbuilder =Jwts.builder().setIssuedAt(createdDate);
+        log.info("jwtBuilder set issued date is created");
+        jwtbuilder =Jwts.builder().setExpiration(expirationDate);
+        log.info("jwtBuilder set expiration date is created");
+        jwtbuilder =Jwts.builder().signWith(signingKey, SignatureAlgorithm.HS512);
+        log.info("jwtBuilder set expiration date is created");
+        String testValue =Jwts.builder().compact();
+        log.info("jwtBuilder test value is: " + testValue);
         String value = Jwts.builder()
                             .setClaims(claims)
                             .setSubject(subject)
