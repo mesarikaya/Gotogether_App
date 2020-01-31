@@ -94,11 +94,15 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
         this.handleGroupSearchFormUpdate = this.handleGroupSearchFormUpdate.bind(this);
     }
 
-    public componentDidMount() {
+    public componentDidMount = async() => {
         const currAppState = store.getState();
-        this.props.onGetUserAccountDetails(null,
+        this.setState({isLoading: true});
+        await Promise.all([this.props.onGetUserAccountDetails(null,
                                            currAppState.system.userName,
-                                           currAppState.system.token);
+                                           currAppState.system.token)]);
+        window.setTimeout(() =>{
+            this.setState({isLoading: false});
+        }, 500);
     }
 
     public componentDidUpdate(oldProps:Props&RouteComponentProps<PathProps>) {
@@ -129,6 +133,20 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
         this.setState({ isLoading: status });
     }
 
+    public showSpinner(){
+        return (
+            <div className="row justify-content-center">
+                <Spinner
+                    as="span"
+                    animation="grow" 
+                    variant="warning"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                />
+            <p>Processing</p>
+        </div>);
+    }
     public loadTable = (groupSearchResult: GroupSearchResult[]) => {
         if (this.state.isLoading===true){
             return (
@@ -186,14 +204,17 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
                 />
                 <div className="container px-0 mx-auto pageContainer">
                     <CardDeck key={this.state.storeState.system.userName}>
+                        {this.state.isLoading ? 
                         <UserSubscribedGroupsList key={this.state.storeState.system.userName+"_subs"}
                                                   subscribedGroups={this.state.storeState.userAccount.subscribedGroups}
                                                   userName={this.state.storeState.system.userName}
                                                   token={this.state.storeState.system.token}
                                                   onUpdateMember={this.props.onUpdateGroupMember}
                                                   updateSelectedGroup={this.props.updateSelectedGroup}
-                                                  onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>
-
+                                                  onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>:
+                            this.showSpinner()
+                        }
+                        {this.state.isLoading ? 
                         <UserInvitationsList key={this.state.storeState.system.userName+"_invites"} 
                                              invitationsList={this.state.storeState.userAccount.invitationList}
                                              userName={this.state.storeState.system.userName}
@@ -201,7 +222,9 @@ class UserPage extends React.Component<Props&RouteComponentProps<PathProps>, Sta
                                              onUpdateMember={this.props.onUpdateGroupMember}
                                              onUpdateInvitationList={this.props.onUpdateGroupInvitationsList}
                                              updateSelectedGroup={this.props.updateSelectedGroup}
-                                             onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>
+                                             onGetUserAccountDetails={this.props.onGetUserAccountDetails}/>:
+                            this.showSpinner()
+                        }
                     </CardDeck>
                 </div>
                     

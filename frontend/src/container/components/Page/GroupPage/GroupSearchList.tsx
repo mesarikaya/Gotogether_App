@@ -40,7 +40,7 @@ class GroupSearchList extends React.Component<Props & RouteComponentProps < Path
         await Promise.all([this.props.updateSelectedGroup(event, group, group.id, this.props.token)]);
         window.setTimeout(() =>{
             this.props.history.push('/group');
-        }, 3000);
+        }, 500);
     }
 
     public handleOnApply = async (event: React.MouseEvent<HTMLButtonElement>, 
