@@ -14,11 +14,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import javax.crypto.spec.SecretKeySpec;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+@Slf4j
 @Component
 public class JWTUtil implements Serializable  {
 
@@ -99,7 +101,7 @@ public class JWTUtil implements Serializable  {
     }
 
     public String generateToken(SecurityUserLibrary userDetails) {
-
+        log.info("Inside generate token function");
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", userDetails.getRoles());
         return doGenerateToken(claims, userDetails.getUsername(), generateAudience());
