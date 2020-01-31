@@ -121,24 +121,19 @@ public class JWTUtil implements Serializable  {
         log.info("Set the signature algorithm: " + SignatureAlgorithm.HS512);
         JwtBuilder jwtbuilder =Jwts.builder();
         log.info("jwtBuilder is created");
-        jwtbuilder =Jwts.builder().setClaims(claims);
+        jwtbuilder =jwtbuilder.setClaims(claims);
         log.info("jwtBuilder claims is created");
-        jwtbuilder =Jwts.builder().setSubject(subject);
+        jwtbuilder =jwtbuilder.setSubject(subject);
         log.info("jwtBuilder subject is created");
-        jwtbuilder =Jwts.builder().setAudience(audience);
+        jwtbuilder =jwtbuilder.setAudience(audience);
         log.info("jwtBuilder audience is created");
-        jwtbuilder =Jwts.builder().setIssuedAt(createdDate);
+        jwtbuilder =jwtbuilder.setIssuedAt(createdDate);
         log.info("jwtBuilder set issued date is created");
-        jwtbuilder =Jwts.builder().setExpiration(expirationDate);
+        jwtbuilder =jwtbuilder.setExpiration(expirationDate);
         log.info("jwtBuilder set expiration date is created");
-        try{
-            jwtbuilder =Jwts.builder().signWith(signingKey, SignatureAlgorithm.HS256);
-        }catch (Exception ex){
-            log.info("Eception is: " + ex.getMessage());
-        }
-        
+        jwtbuilder =jwtbuilder.signWith(signingKey, SignatureAlgorithm.HS256);
         log.info("jwtBuilder set expiration date is created");
-        String testValue =Jwts.builder().compact();
+        String testValue =jwtbuilder.compact();
         log.info("jwtBuilder test value is: " + testValue);
         String value = Jwts.builder()
                             .setClaims(claims)
