@@ -72,6 +72,7 @@ public class AuthenticationController {
                                                           if (passwordEncoder.matches(ar.getPassword(), userDetails.getPassword())) {
                                                                log.info("Authorized! YEAH!!!!");
                                                                String token = jwtUtil.generateToken((SecurityUserLibrary) userDetails);
+                                                               log.info("GEnerated token is" + token);
                                                                ResponseCookie cookie = ResponseCookie.from("System", token)
                                                                    .sameSite("Strict")
                                                                    .path("/")
@@ -79,7 +80,8 @@ public class AuthenticationController {
                                                                    .httpOnly(true)
                                                                    .build();
                                                                serverHttpResponse.addCookie(cookie);
-
+                                                               log.info("Cookie is: " + cookie.toString());
+                                                               log.info("New Auth response is: " + new AuthResponse(token, userDetails.getUsername()).toString());
                                                                log.info("Server response: " + serverHttpResponse.getCookies().toSingleValueMap().values());
                                                                return ResponseEntity.ok()
                                                                                                     .contentType(MediaType.APPLICATION_JSON_UTF8)
