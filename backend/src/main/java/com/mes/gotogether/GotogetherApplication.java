@@ -34,4 +34,10 @@ public class GotogetherApplication {
     public RouterFunction<ServerResponse> htmlRouter(@Value("classpath:/public/index.html") Resource html) {
         return route(GET("/"), request -> ok().contentType(MediaType.TEXT_HTML).syncBody(html));
     }
+    
+    @Bean
+    public RouterFunction<ServerResponse> htmlVerifyRouter(@Value("classpath:/public/index.html") Resource html) {
+        return route(GET("/verify/validate/{userID}/{verificationToken}"), request -> ok().contentType(MediaType.TEXT_HTML).syncBody(html));
+    }
+   
 }
