@@ -49,5 +49,10 @@ public class GotogetherApplication {
     public RouterFunction<ServerResponse> htmlUserPageRouter(@Value("classpath:/public/index.html") Resource html) {
         return route(GET("/user"), request -> ok().contentType(MediaType.TEXT_HTML).syncBody(html));
     }
+    
+        @Bean
+    public RouterFunction<ServerResponse> htmlServiceWorkerRouter(@Value("classpath:/public/index.html") Resource html) {
+        return route(GET("/index.html"), request -> ok().contentType(MediaType.TEXT_HTML).syncBody(html));
+    }
    
 }
