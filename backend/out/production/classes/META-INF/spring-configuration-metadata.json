@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.mes.gotogether.security.config.oauthconfig.Properties",
+      "sourceType": "com.mes.gotogether.security.config.oauthconfig.Properties"
+    },
+    {
+      "name": "app.auth",
+      "type": "com.mes.gotogether.security.config.oauthconfig.Properties$Auth",
+      "sourceType": "com.mes.gotogether.security.config.oauthconfig.Properties",
+      "sourceMethod": "getAuth()"
+    },
+    {
+      "name": "app.oauth2",
+      "type": "com.mes.gotogether.security.config.oauthconfig.Properties$OAuth2",
+      "sourceType": "com.mes.gotogether.security.config.oauthconfig.Properties",
+      "sourceMethod": "getOauth2()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.mes.gotogether.security.config.oauthconfig.Properties$Auth",
+      "defaultValue": 0
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.mes.gotogether.security.config.oauthconfig.Properties$Auth"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.mes.gotogether.security.config.oauthconfig.Properties$OAuth2"
+    }
+  ],
+  "hints": []
+}

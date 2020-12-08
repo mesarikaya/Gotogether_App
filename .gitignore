@@ -20,7 +20,9 @@ HELP.md
 *.iws
 *.iml
 *.ipr
-/out/
+/out/*
+/backend/out/*
+backend/out/*
 
 ### NetBeans ###
 /nbproject/private/
