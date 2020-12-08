@@ -7,6 +7,7 @@ import { GroupSearchResult } from '../types/userInterface/groupSearchResult';
 import createStandardError from './utilities/createStandardError';
 import { UpdateResponseStatusActionType } from '../types/action/updateResponseStatusActionType';
 
+
 // Set the API url for back end calls
 const url = process.env.NODE_ENV === 'production' ? "/api/v1/" : "http://localhost:8080/api/auth/";
 
