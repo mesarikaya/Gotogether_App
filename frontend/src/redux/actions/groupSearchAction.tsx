@@ -9,7 +9,7 @@ import { UpdateResponseStatusActionType } from '../types/action/updateResponseSt
 
 
 // Set the API url for back end calls
-const url = process.env.NODE_ENV === 'production' ? "/api/v1/" : "http://localhost:8080/api/auth/";
+const url = process.env.NODE_ENV === 'production' ? "/api/v1/" : "/api/v1/";
 
 /**
  * Make GET request and dipatch the image data to be shown via redux  

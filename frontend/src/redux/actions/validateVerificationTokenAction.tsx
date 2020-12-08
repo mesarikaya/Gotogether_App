@@ -6,7 +6,7 @@ import ResponseStatus from '../types/userInterface/responseStatus';
 import createStandardError from './utilities/createStandardError';
 
 // Set the API url for back end calls
-const url = process.env.NODE_ENV === 'production' ? "/api/auth/" : "http://localhost:8080/api/auth/";
+const url = process.env.NODE_ENV === 'production' ? "/api/auth/" : "/api/auth/";
 
 /**
  * Validate verification token
