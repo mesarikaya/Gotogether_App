@@ -7,7 +7,7 @@ import { UpdateResponseStatusActionType } from '../types/action/updateResponseSt
 import { createStandardError } from './utilities/createStandardError';
 
 // Set the API url for back end calls
-const url = process.env.REACT_APP_NODE_ENV === 'production' ? "/api/auth/" : "/api/auth/";
+const url = process.env.NODE_ENV === 'production' ? "/api/auth/" : "/api/auth/";
 
 /**
  * Make GET request and dipatch the image data to be shown via redux  

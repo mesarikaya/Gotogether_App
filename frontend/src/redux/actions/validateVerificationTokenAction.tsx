@@ -8,6 +8,7 @@ import createStandardError from './utilities/createStandardError';
 // Set the API url for back end calls
 const url = process.env.NODE_ENV === 'production' ? "/api/auth/" : "/api/auth/";
 
+
 /**
  * Validate verification token
  * @param e HTML Form Event
