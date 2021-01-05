@@ -15,7 +15,7 @@
     "@types/react-router-redux": "^5.0.18",
     "@types/redux-actions": "^2.6.1",
     "@types/redux-logger": "^3.0.7",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "dotenv": "^7.0.0",
     "font-awesome": "^4.7.0",
